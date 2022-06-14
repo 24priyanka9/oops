@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+<style>
+    .container{
+        border:3px solid red;
+        width: 300px;
+        margin: auto;
+        text-align: center;
+        box-sizing: border-box;
+        
+       
+    }
+    .calculator{
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        
+    }
+    div{
+        cursor: pointer;
+        background-color: black;
+        color:white;
+        /* border:1px solid red; */
+        padding: 13px;
+        /* margin: 1px; */
+        text-align: center;
+    }
+    #screen{
+        width: 160px;
+        padding: 50px;
+        background-color: rgb(113, 235, 113);
+        font-size: 20px;
+    }
+    .op{
+        background-color: blue;
+        border-radius: 50px;
+        padding: 10px;
+       
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- <form action=""></form> -->
+        <input type="text" id="screen" maxlength="30"> 
+        <!-- <div id="screen"></div> -->
+        <div class="calculator" id="calc">
+       <div class="op">del</div>
+       <div class="op">clr</div>
+       <div class="op">%</div>
+       <div class="op">&divide;</div>
+       
+       <div>7</div>
+       <div>8</div>
+       <div>9</div>
+    
+       <div class="op">+</div>
+       
+       <div>4</div>
+       <div>5</div>
+       <div>6</div>
+ 
+       <div class="op">-</div>
+     
+       <div>1</div>
+       <div>2</div>
+       <div>3</div>
+    
+       <div class="op">&times</div>
+       
+       <div>e</div>
+       <div>0</div>
+       <div>.</div>
+    
+       <div class="op">=</div>
+     
+    </div>
+    </div>
+    <script>
+        // function click(){
+            let screen=document.getElementById('screen');
+            let button=document.querySelectorAll('.calculator');
+            let screenvalue='';
+            for (item of button){
+                item.addEventListener('click',(e)=>{
+                    buttontext= e.target.innerText;
+                    if(buttontext=='×'){
+                        buttontext='*';
+                        screenvalue+=buttontext;
+                        screenvalue=screenvalue.substr(0,screenvalue.length-1)
+
+                        screen.value=screenvalue;
+                    }
+                   if( buttontext=="÷"){
+                       buttontext='/';
+                       screenvalue+=screenvalue.substr(0,screenvalue.length-1)
+                       screen.value=screenvalue;
+                   }
+                    if(buttontext=="%"){
+                        screenvalue=screenvalue/100;
+                        screen.value=screenvalue;
+                    }
+                    else if(buttontext=='clr'){
+                        screenvalue='';
+                        screen.value=screenvalue;
+                    }
+                    else if(buttontext=='='){
+                        screen.value=eval(screenvalue);
+                    }
+                    else if(buttontext=='del'){
+                        screenvalue=screenvalue.substr(0,screenvalue.length-1)
+                        screen.value=screenvalue;
+                    }
+                    else{
+                        screenvalue+=buttontext
+                        screen.value=screenvalue;
+                    }
+                })
+            }
+        // let select=document.addEventListener(click).querySelectorAll('.calculator')      let value=evaluate(select)
+        // console.log(value)
+    
+    </script>
+</body>
+</html>
